@@ -199,7 +199,7 @@ for i in range(cols):
             if pcp.max() > pcp_global_max:
                 pcp_global_max = pcp.max()
         except IndexError:
-            pass
+                pcp = pcp * 0
 
 # plots data for all datasets TODO: reduce to single loop and store all values:
 for i in range(cols):
@@ -220,7 +220,7 @@ for i in range(cols):
             event = data.precip.sel(time=slice(date_start, date_end),lat=slice(datalat.min(), datalat.max()),lon=slice(datalon.min(), datalon.max()))
             pcp = np.sum(event, axis=0)*86400
         except IndexError:
-            pass
+            pcp = pcp * 0
         #Define cartopy grid:
         crs = ccrs.PlateCarree(central_longitude=((datalon.max()+datalon.min())/2))
 
